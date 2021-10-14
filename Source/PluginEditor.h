@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "SliderContainer.h"
 
 class MyAudioProcessorEditor : public juce::AudioProcessorEditor
 {
@@ -21,15 +22,13 @@ public:
     void resized() override;
 
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
     MyAudioProcessor& audioProcessor;
-    
-    juce::Slider levelSlider;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> levelSliderAttachment;
+    SliderContainer sliderContainer;
 
     juce::ComboBox comboBox;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> modeComboBoxAttachment;
+
+    std::vector<juce::Component *> subcomponents { &sliderContainer, &comboBox };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MyAudioProcessorEditor)
 };
