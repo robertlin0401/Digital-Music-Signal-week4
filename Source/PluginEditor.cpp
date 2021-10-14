@@ -9,7 +9,6 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-//==============================================================================
 MyAudioProcessorEditor::MyAudioProcessorEditor(MyAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p)
 {
@@ -38,7 +37,6 @@ MyAudioProcessorEditor::~MyAudioProcessorEditor()
 {
 }
 
-//==============================================================================
 void MyAudioProcessorEditor::paint(juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
