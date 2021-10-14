@@ -10,7 +10,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-Week4AudioProcessorEditor::Week4AudioProcessorEditor(Week4AudioProcessor& p)
+MyAudioProcessorEditor::MyAudioProcessorEditor(MyAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p)
 {
     // Make sure that before the constructor has finished, you've set the
@@ -34,12 +34,12 @@ Week4AudioProcessorEditor::Week4AudioProcessorEditor(Week4AudioProcessor& p)
     addAndMakeVisible(comboBox);
 }
 
-Week4AudioProcessorEditor::~Week4AudioProcessorEditor()
+MyAudioProcessorEditor::~MyAudioProcessorEditor()
 {
 }
 
 //==============================================================================
-void Week4AudioProcessorEditor::paint(juce::Graphics& g)
+void MyAudioProcessorEditor::paint(juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
@@ -53,7 +53,7 @@ void Week4AudioProcessorEditor::paint(juce::Graphics& g)
     g.drawFittedText("Mode", x, y + height, width, height, juce::Justification::centred, 1);
 }
 
-void Week4AudioProcessorEditor::resized()
+void MyAudioProcessorEditor::resized()
 {
     auto area = getLocalBounds();
     int sliderWidth = area.getWidth() / 2;

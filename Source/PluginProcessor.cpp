@@ -10,7 +10,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-Week4AudioProcessor::Week4AudioProcessor()
+MyAudioProcessor::MyAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
      : AudioProcessor(BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
@@ -42,17 +42,17 @@ Week4AudioProcessor::Week4AudioProcessor()
         mySynth.addVoice(new SynthVoice());
 }
 
-Week4AudioProcessor::~Week4AudioProcessor()
+MyAudioProcessor::~MyAudioProcessor()
 {
 }
 
 //==============================================================================
-const juce::String Week4AudioProcessor::getName() const
+const juce::String MyAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool Week4AudioProcessor::acceptsMidi() const
+bool MyAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
     return true;
@@ -61,7 +61,7 @@ bool Week4AudioProcessor::acceptsMidi() const
    #endif
 }
 
-bool Week4AudioProcessor::producesMidi() const
+bool MyAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
     return true;
@@ -70,7 +70,7 @@ bool Week4AudioProcessor::producesMidi() const
    #endif
 }
 
-bool Week4AudioProcessor::isMidiEffect() const
+bool MyAudioProcessor::isMidiEffect() const
 {
    #if JucePlugin_IsMidiEffect
     return true;
@@ -79,37 +79,37 @@ bool Week4AudioProcessor::isMidiEffect() const
    #endif
 }
 
-double Week4AudioProcessor::getTailLengthSeconds() const
+double MyAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int Week4AudioProcessor::getNumPrograms()
+int MyAudioProcessor::getNumPrograms()
 {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int Week4AudioProcessor::getCurrentProgram()
+int MyAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void Week4AudioProcessor::setCurrentProgram(int index)
+void MyAudioProcessor::setCurrentProgram(int index)
 {
 }
 
-const juce::String Week4AudioProcessor::getProgramName(int index)
+const juce::String MyAudioProcessor::getProgramName(int index)
 {
     return {};
 }
 
-void Week4AudioProcessor::changeProgramName(int index, const juce::String& newName)
+void MyAudioProcessor::changeProgramName(int index, const juce::String& newName)
 {
 }
 
 //==============================================================================
-void Week4AudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
+void MyAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
@@ -117,14 +117,14 @@ void Week4AudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
     mySynth.setCurrentPlaybackSampleRate(sampleRate);
 }
 
-void Week4AudioProcessor::releaseResources()
+void MyAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool Week4AudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
+bool MyAudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
 {
   #if JucePlugin_IsMidiEffect
     juce::ignoreUnused (layouts);
@@ -149,7 +149,7 @@ bool Week4AudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) con
 }
 #endif
 
-void Week4AudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+void MyAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
@@ -167,25 +167,25 @@ void Week4AudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 }
 
 //==============================================================================
-bool Week4AudioProcessor::hasEditor() const
+bool MyAudioProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-juce::AudioProcessorEditor* Week4AudioProcessor::createEditor()
+juce::AudioProcessorEditor* MyAudioProcessor::createEditor()
 {
-    return new Week4AudioProcessorEditor(*this);
+    return new MyAudioProcessorEditor(*this);
 }
 
 //==============================================================================
-void Week4AudioProcessor::getStateInformation(juce::MemoryBlock& destData)
+void MyAudioProcessor::getStateInformation(juce::MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 }
 
-void Week4AudioProcessor::setStateInformation(const void* data, int sizeInBytes)
+void MyAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
@@ -195,5 +195,5 @@ void Week4AudioProcessor::setStateInformation(const void* data, int sizeInBytes)
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new Week4AudioProcessor();
+    return new MyAudioProcessor();
 }

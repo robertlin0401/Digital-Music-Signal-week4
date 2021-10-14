@@ -14,11 +14,11 @@
 //==============================================================================
 /**
 */
-class Week4AudioProcessorEditor : public juce::AudioProcessorEditor
+class MyAudioProcessorEditor : public juce::AudioProcessorEditor
 {
 public:
-    Week4AudioProcessorEditor(Week4AudioProcessor&);
-    ~Week4AudioProcessorEditor() override;
+    MyAudioProcessorEditor(MyAudioProcessor&);
+    ~MyAudioProcessorEditor() override;
 
     //==============================================================================
     void paint(juce::Graphics&) override;
@@ -27,7 +27,7 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    Week4AudioProcessor& audioProcessor;
+    MyAudioProcessor& audioProcessor;
     
     juce::Slider levelSlider;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> levelSliderAttachment;
@@ -35,5 +35,5 @@ private:
     juce::ComboBox comboBox;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> modeComboBoxAttachment;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Week4AudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MyAudioProcessorEditor)
 };

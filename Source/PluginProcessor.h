@@ -15,12 +15,12 @@
 //==============================================================================
 /**
 */
-class Week4AudioProcessor : public juce::AudioProcessor
+class MyAudioProcessor : public juce::AudioProcessor
 {
 public:
     //==============================================================================
-    Week4AudioProcessor();
-    ~Week4AudioProcessor() override;
+    MyAudioProcessor();
+    ~MyAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
@@ -62,5 +62,5 @@ private:
     
     double lastSampleRate;
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Week4AudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MyAudioProcessor)
 };
