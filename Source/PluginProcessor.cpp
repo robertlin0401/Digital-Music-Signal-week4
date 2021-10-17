@@ -112,6 +112,7 @@ void MyAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
     // initialisation that you need..
     lastSampleRate = sampleRate;
     mySynth.setCurrentPlaybackSampleRate(sampleRate);
+    singleChannelSampleFifo.prepare(samplesPerBlock);
 }
 
 void MyAudioProcessor::releaseResources()
@@ -161,6 +162,7 @@ void MyAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::Midi
         myVoice->setMode(tree.getRawParameterValue("mode")->load());
     }
     mySynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
+    singleChannelSampleFifo.update(buffer);
 }
 
 bool MyAudioProcessor::hasEditor() const
