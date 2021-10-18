@@ -5,6 +5,10 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="jpBZ8T" name="week4">
     <GROUP id="{A1BCB903-18B6-9218-4141-D5E5AE4DB8DF}" name="Source">
+      <FILE id="gfYgBJ" name="FrequencySpectrum.cpp" compile="1" resource="0"
+            file="Source/FrequencySpectrum.cpp"/>
+      <FILE id="lc5PdK" name="FrequencySpectrum.h" compile="0" resource="0"
+            file="Source/FrequencySpectrum.h"/>
       <FILE id="hVnEsz" name="Oscilloscope.cpp" compile="1" resource="0"
             file="Source/Oscilloscope.cpp"/>
       <FILE id="aS61db" name="Oscilloscope.h" compile="0" resource="0" file="Source/Oscilloscope.h"/>

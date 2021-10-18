@@ -13,9 +13,10 @@ MyAudioProcessorEditor::MyAudioProcessorEditor(MyAudioProcessor& p)
     : AudioProcessorEditor(&p), 
       audioProcessor(p),
       sliderContainer(p),
-      waveform(p)
+      waveform(p),
+      spectrum(p)
 {
-    setSize(350, 550);
+    setSize(350, 600);
 
     comboBox.addItem("sine", 1);
     comboBox.addItem("square", 2);
@@ -45,9 +46,10 @@ void MyAudioProcessorEditor::resized()
     auto area = getLocalBounds();
     juce::FlexBox flexBox;
     flexBox.flexDirection = juce::FlexBox::Direction::column;
-    flexBox.items.add(juce::FlexItem(sliderContainer).withFlex(3.0f));
-    flexBox.items.add(juce::FlexItem(comboBox).withFlex(1.0f));
-    flexBox.items.add(juce::FlexItem(waveform).withFlex(3.0f));
+    flexBox.items.add(juce::FlexItem(sliderContainer).withFlex(2.0f));
+    flexBox.items.add(juce::FlexItem(comboBox).withFlex(0.5f));
+    flexBox.items.add(juce::FlexItem(waveform).withFlex(2.0f));
+    flexBox.items.add(juce::FlexItem(spectrum).withFlex(3.0f));
     flexBox.performLayout(area.reduced(10));
     for (auto &subcomponent : subcomponents) {
         subcomponent->setBounds(subcomponent->getBounds().reduced(3));

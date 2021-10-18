@@ -12,6 +12,7 @@
 #include "PluginProcessor.h"
 #include "SliderContainer.h"
 #include "Oscilloscope.h"
+#include "FrequencySpectrum.h"
 
 class MyAudioProcessorEditor : public juce::AudioProcessorEditor
 {
@@ -26,11 +27,12 @@ private:
     MyAudioProcessor& audioProcessor;
     SliderContainer sliderContainer;
     Oscilloscope waveform;
+    FrequencySpectrum spectrum;
 
     juce::ComboBox comboBox;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> modeComboBoxAttachment;
 
-    std::vector<juce::Component *> subcomponents { &sliderContainer, &comboBox, &waveform };
+    std::vector<juce::Component *> subcomponents { &sliderContainer, &comboBox, &waveform, &spectrum };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MyAudioProcessorEditor)
 };
