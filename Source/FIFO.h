@@ -270,6 +270,7 @@ public:
                       float binWidth,
                       float negativeInfinity)
     {
+        auto left = fftBounds.getX();
         auto top = fftBounds.getY();
         auto bottom = fftBounds.getHeight();
         auto width = fftBounds.getWidth();
@@ -290,7 +291,7 @@ public:
         if( std::isnan(y) || std::isinf(y) )
             y = bottom;
         
-        p.startNewSubPath(0, y);
+        p.startNewSubPath(left, y);
 
         const int pathResolution = 2;
         for( int binNum = 1; binNum < numBins; binNum += pathResolution )
@@ -301,7 +302,7 @@ public:
             {
                 auto binFreq = binNum * binWidth;
                 auto normalizedBinX = juce::mapFromLog10(binFreq, 20.f, 20000.f);
-                int binX = std::floor(normalizedBinX * width);
+                int binX = std::floor(left + normalizedBinX * width);
                 p.lineTo(binX, y);
             }
         }

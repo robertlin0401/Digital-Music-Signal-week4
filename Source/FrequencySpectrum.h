@@ -39,14 +39,17 @@ private:
     std::vector<float> getFrequencies()
     {
         return std::vector<float> {
-            20, 2000, 5000, 8000, 11000, 14000, 17000, 20000
+            20  , 50  , 100  , 
+            200 , 500 , 1000 ,
+            2000, 5000, 10000,
+            20000
         };
     }
 
     std::vector<float> getGains()
     {
         return std::vector<float> {
-            -24, -12, 0, 12, 24
+            -36, -24, -12, 0, 12
         };
     }
 
@@ -54,8 +57,7 @@ private:
     {
         std::vector<float> xs;
         for (auto f : freqs) {
-            auto normX = (f - 20.f) / (20000.f - 20.f);
-            // auto normX = juce::mapFromLog10(f, 20.f, 20000.f);
+            auto normX = juce::mapFromLog10(f, 20.f, 20000.f);
             xs.push_back(left + width * normX);
         }
         return xs;
@@ -64,9 +66,10 @@ private:
     juce::Rectangle<int> getRenderArea()
     {
         auto bounds = getLocalBounds();
-        bounds.removeFromBottom(1);
-        bounds.removeFromLeft(1);
-        bounds.removeFromRight(1);
+        bounds.removeFromTop(3);
+        bounds.removeFromBottom(3);
+        bounds.removeFromLeft(3);
+        bounds.removeFromRight(3);
         return bounds;
     }
 

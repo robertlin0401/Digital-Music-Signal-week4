@@ -30,9 +30,10 @@ void FrequencySpectrum::paint(juce::Graphics &g)
     g.fillAll(juce::Colour(50, 50, 50));
     g.setColour(juce::Colours::grey);
     g.drawRoundedRectangle(getLocalBounds().toFloat(), 3, 3);
+    
+    drawBackgroundGrid(g);
     g.setColour(juce::Colours::white);
     g.strokePath(spectrumPath, juce::PathStrokeType(1.f));
-    drawBackgroundGrid(g);
     drawTextLabels(g);
 }
 
@@ -72,7 +73,7 @@ void FrequencySpectrum::generateSpectrum()
     while (fftDataGenerator.getNumAvailableFFTDataBlocks() > 0) {
         std::vector<float> fftData;
         if(fftDataGenerator.getFFTData(fftData)) {
-            pathProducer.generatePath(fftData, getLocalBounds().toFloat(), fftsize, binWidth, getGains().front());
+            pathProducer.generatePath(fftData, getAnalysisArea().toFloat(), fftsize, binWidth, getGains().front());
         }
     }
     while (pathProducer.getNumPathsAvailable() > 0) {
@@ -159,7 +160,7 @@ void FrequencySpectrum::drawTextLabels(juce::Graphics &g)
         juce::Rectangle<int> r;
         r.setSize(textWidth, fontHeight);
         r.setCentre(0, y - fontHeight / 2.f);
-        r.setX(3);
+        r.setX(5);
 
         g.drawFittedText(str, r, juce::Justification::centred, 1);
     }
